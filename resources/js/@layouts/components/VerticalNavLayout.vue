@@ -1,6 +1,6 @@
 <script>
-import { useDisplay } from 'vuetify'
 import VerticalNav from '@layouts/components/VerticalNav.vue'
+import { useDisplay } from 'vuetify'
 
 export default defineComponent({
   setup(props, { slots }) {
@@ -27,7 +27,7 @@ export default defineComponent({
 
       // 👉 Navbar
       const navbar = h('header', { class: ['layout-navbar navbar-blur'] }, [
-        h('div', { class: 'navbar-content-container' }, slots.navbar?.({
+        h('div', slots.navbar?.({
           toggleVerticalOverlayNavActive: toggleIsOverlayNavActive,
         })),
       ])

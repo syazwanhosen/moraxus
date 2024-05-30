@@ -57,10 +57,10 @@
   }
 
   &.active {
-    border-color: rgb(var(--v-theme-primary));
+    border-color: rgb(95, 158, 160);
 
     .v-icon {
-      color: rgb(var(--v-theme-primary)) !important;
+      color: rgb(95, 158, 160) !important;
     }
   }
 }

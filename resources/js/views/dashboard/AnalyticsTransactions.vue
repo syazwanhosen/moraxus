@@ -1,116 +1,119 @@
 <script setup>
-import chartInfo from '@images/cards/chart-info.png'
-import creditCardSuccess from '@images/cards/credit-card-success.png'
-import creditCardWarning from '@images/cards/credit-card-warning.png'
-import paypalError from '@images/cards/paypal-error.png'
-import walletPrimary from '@images/cards/wallet-primary.png'
+import axios from 'axios'
+import { reactive } from 'vue'
+import VueApexCharts from 'vue3-apexcharts'
 
-const transactions = [
-  {
-    amount: +82.6,
-    paymentMethod: 'Paypal',
-    description: 'Send money',
-    icon: paypalError,
-    color: 'error',
+const option =  {
+  chart: {
+    height: 280,
+    type: "radialBar",
   },
-  {
-    paymentMethod: 'Wallet',
-    amount: +270.69,
-    description: 'Mac\'D',
-    icon: walletPrimary,
-    color: 'primary',
-  },
-  {
-    amount: +637.91,
-    paymentMethod: 'Transfer',
-    description: 'Refund',
-    icon: chartInfo,
-    color: 'info',
-  },
-  {
-    paymentMethod: 'Credit Card',
-    amount: -838.71,
-    description: 'Ordered Food',
-    icon: creditCardSuccess,
-    color: 'success',
-  },
-  {
-    paymentMethod: 'Wallet',
-    amount: +203.33,
-    description: 'Starbucks',
-    icon: walletPrimary,
-    color: 'primary',
-  },
-  {
-    paymentMethod: 'Mastercard',
-    amount: -92.45,
-    description: 'Ordered Food',
-    icon: creditCardWarning,
-    color: 'warning',
-  },
-]
+  colors: ['#87E05A'],
+  plotOptions: {
+    radialBar: {
+      hollow: {
+        size: "30%",
+      },
 
-const moreList = [
-  {
-    title: 'Share',
-    value: 'Share',
+      dataLabels: {
+        showOn: "always",
+        name: {
+          show: false,
+          color: "#888",
+          fontSize: "8px",
+        },
+        value: {
+          color: "#111",
+          fontSize: "12px",
+          show: true,
+          offsetY: 4,
+        },
+      },
+    },
   },
-  {
-    title: 'Refresh',
-    value: 'Refresh',
+
+  stroke: {
+    lineCap: "round",
   },
-  {
-    title: 'Update',
-    value: 'Update',
-  },
-]
+  labels: ["Progress"],
+}
+
+const sprints = reactive([])
+
+
+const getSprints = async () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+  try {
+    const response = await axios.get(`/api/get-sprints/${user.organization_id}`)
+
+    const newResponse = response.data.data.map(item => {
+      return {
+        ...item,
+        moduleProgress: `${item.stage_completed}/${response.data.modules}`,
+        percentage: (Number(item.stage_completed) / Number(response.data.modules)) * 100,
+      }
+    })
+
+    sprints.splice(0, sprints.length, ...newResponse)
+
+  } catch(error) {
+    console.error(error)
+  }
+}
+
+getSprints()
 </script>
 
 <template>
-  <VCard title="Transactions">
-    <template #append>
-      <div class="me-n3 mt-n2">
-        <MoreBtn :menu-list="moreList" />
-      </div>
-    </template>
-
-    <VCardText>
-      <VList class="card-list">
-        <VListItem
-          v-for="item in transactions"
-          :key="item.paymentMethod"
+  <VCard title="Sprints">
+    <VTable fixed-header>
+      <thead>
+        <tr>
+          <th class="text-uppercase">
+            Name
+          </th>
+          <th>
+            Modules
+          </th>
+          <th>
+            Progress
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="sprint in sprints"
+          :key="sprint.id"
         >
-          <template #prepend>
-            <VAvatar
-              rounded
-              variant="tonal"
-              :color="item.color"
-              :image="item.icon"
-              class="me-3"
+          <td>
+            {{ sprint.name }}
+          </td>
+          <td class="text-center">
+            {{ sprint.moduleProgress }}
+          </td>
+          <td class="radialChart">
+            <VueApexCharts
+              type="radialBar"
+              :options="option"
+              :series="[sprint.percentage]"
+              width="100"
+              height="100"
             />
-          </template>
-
-          <VListItemSubtitle class="text-disabled mb-1">
-            {{ item.paymentMethod }}
-          </VListItemSubtitle>
-          <VListItemTitle>
-            {{ item.description }}
-          </VListItemTitle>
-
-          <template #append>
-            <VListItemAction>
-              <span class="me-1">{{ item.amount > 0 ? `+$${Math.abs(item.amount)}` : `-$${Math.abs(item.amount)}` }}</span>
-              <span class="text-disabled">USD</span>
-            </VListItemAction>
-          </template>
-        </VListItem>
-      </VList>
-    </VCardText>
+          </td>
+        </tr>
+      </tbody>
+    </VTable>
   </VCard>
 </template>
 
 <style lang="scss" scoped>
   .card-list {
     --v-card-list-gap: 1.6rem;
+  }
+
+  .radialChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

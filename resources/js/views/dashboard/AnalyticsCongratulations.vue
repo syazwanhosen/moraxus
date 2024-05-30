@@ -4,6 +4,8 @@ import illustrationJohnLight from '@images/cards/illustration-john-light.png'
 import { useTheme } from 'vuetify'
 
 const { global } = useTheme()
+const user = JSON.parse(localStorage.getItem('user'))
+
 const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrationJohnDark : illustrationJohnLight)
 </script>
 
@@ -12,46 +14,24 @@ const illustrationJohn = computed(() => global.name.value === 'dark' ? illustrat
     <VRow no-gutters>
       <VCol
         cols="12"
-        sm="8"
         order="2"
         order-sm="1"
       >
         <VCardItem>
           <VCardTitle class="text-md-h5 text-primary">
-            Congratulations Syazwan! 🎉
+            Hi {{ user.name }}! 😊
           </VCardTitle>
         </VCardItem>
 
         <VCardText>
           <span>
-            You have done 72% 🤩 more sales today.
-            <br>
-            Check your new raising badge in your profile.
+            Your HR Dashboard is ready! 
           </span>
           <br>
-          <VBtn
-            variant="tonal"
-            class="mt-4"
-            size="small"
-          >
-            View Badges
-          </VBtn>
+          <span>
+            Easily check the chart to track on employees training progress and completion status. Stay on top of professional development with just a glance.
+          </span>
         </VCardText>
-      </VCol>
-
-      <VCol
-        cols="12"
-        sm="4"
-        order="1"
-        order-sm="2"
-        class="text-center"
-      >
-        <img
-          :src="illustrationJohn"
-          :height="$vuetify.display.xs ? '150' : '175'"
-          :class="$vuetify.display.xs ? 'mt-6 mb-n2' : 'position-absolute'"
-          class="john-illustration flip-in-rtl"
-        >
       </VCol>
     </VRow>
   </VCard>

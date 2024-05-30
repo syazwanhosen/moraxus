@@ -1,10 +1,10 @@
 <script setup>
-import VueApexCharts from 'vue3-apexcharts'
-import { useTheme } from 'vuetify'
 import statsVerticalChart from '@images/cards/chart-success.png'
 import statsVerticalPaypal from '@images/cards/paypal-error.png'
 import statsVerticalWallet from '@images/cards/wallet-primary.png'
 import { hexToRgb } from '@layouts/utils'
+import VueApexCharts from 'vue3-apexcharts'
+import { useTheme } from 'vuetify'
 
 const vuetifyTheme = useTheme()
 
@@ -186,77 +186,58 @@ const chartConfig = computed(() => {
 </script>
 
 <template>
-  <VCard>
-    <VCardItem>
-      <VTabs
-        v-model="currentTab"
-        class="v-tabs-pill"
-      >
-        <VTab value="income">
-          Income
-        </VTab>
-        <VTab value="expenses">
-          Expenses
-        </VTab>
-        <VTab value="profit">
-          Profit
-        </VTab>
-      </VTabs>
-    </VCardItem>
+  <VCardText class="d-flex align-center gap-3">
+    <VAvatar
+      size="46"
+      rounded
+      :image="tabData.avatar"
+    />
 
-    <VCardText class="d-flex align-center gap-3">
-      <VAvatar
-        size="46"
-        rounded
-        :image="tabData.avatar"
-      />
-
-      <div>
-        <p class="mb-0">
-          {{ tabData.title }}
-        </p>
-        <div class="d-flex align-center gap-2">
-          <h6 class="text-h6">
-            {{ tabData.stats }}
-          </h6>
-          <span
-            class="text-sm"
-            :class="tabData.profitLoss > 0 ? 'text-success' : 'text-error'"
-          >
-            <VIcon
-              size="24"
-              icon="bx-chevron-up"
-            />
-            {{ tabData.profitLoss }}%
-          </span>
-        </div>
-      </div>
-    </VCardText>
-
-    <VCardText>
-      <VueApexCharts
-        type="area"
-        :height="241"
-        :options="chartConfig"
-        :series="series[currentTab]"
-      />
-    </VCardText>
-
-    <VCardText class="d-flex align-center justify-center gap-3">
-      <VProgressCircular
-        size="45"
-        :model-value="tabData.profitLoss"
-      >
-        <span class="text-xs text-medium-emphasis">{{ tabData.profitLossAmount }}</span>
-      </VProgressCircular>
-
-      <div>
-        <h6 class="text-base font-weight-regular">
-          <span class="text-capitalize">{{ currentTab }}</span>
-          <span> this week</span>
+    <div>
+      <p class="mb-0">
+        {{ tabData.title }}
+      </p>
+      <div class="d-flex align-center gap-2">
+        <h6 class="text-h6">
+          {{ tabData.stats }}
         </h6>
-        <span class="text-sm text-disabled">{{ tabData.compareToLastWeek }} less than last week</span>
+        <span
+          class="text-sm"
+          :class="tabData.profitLoss > 0 ? 'text-success' : 'text-error'"
+        >
+          <VIcon
+            size="24"
+            icon="bx-chevron-up"
+          />
+          {{ tabData.profitLoss }}%
+        </span>
       </div>
-    </VCardText>
-  </VCard>
+    </div>
+  </VCardText>
+
+  <VCardText>
+    <VueApexCharts
+      type="area"
+      :height="241"
+      :options="chartConfig"
+      :series="series[currentTab]"
+    />
+  </VCardText>
+
+  <VCardText class="d-flex align-center justify-center gap-3">
+    <VProgressCircular
+      size="45"
+      :model-value="tabData.profitLoss"
+    >
+      <span class="text-xs text-medium-emphasis">{{ tabData.profitLossAmount }}</span>
+    </VProgressCircular>
+
+    <div>
+      <h6 class="text-base font-weight-regular">
+        <span class="text-capitalize">{{ currentTab }}</span>
+        <span> this week</span>
+      </h6>
+      <span class="text-sm text-disabled">{{ tabData.compareToLastWeek }} less than last week</span>
+    </div>
+  </VCardText>
 </template>

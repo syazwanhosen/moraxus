@@ -19,10 +19,10 @@ const props = defineProps({
     >
       <VIcon
         :icon="item.icon"
-        class="nav-item-icon"
+        class="nav-item-icon "
       />
       <!-- 👉 Title -->
-      <span class="nav-item-title">
+      <span class="nav-item-title ">
         {{ item.title }}
       </span>
     </Component>
@@ -30,10 +30,15 @@ const props = defineProps({
 </template>
 
 <style lang="scss">
+.nav-color {
+  color: rgb(95, 158, 160);
+}
+
 .layout-vertical-nav {
   .nav-link a {
     display: flex;
     align-items: center;
+    color: rgb(95, 158, 160);
     cursor: pointer;
   }
 }

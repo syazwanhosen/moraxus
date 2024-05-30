@@ -6,12 +6,12 @@
       // nav-link and nav-group style for dark
       .nav-link .router-link-exact-active,
       .nav-group.active:not(.nav-group .nav-group) > :first-child {
-        background-color: rgb(var(--v-theme-primary)) !important;
+        background-color: rgb(95, 158, 160) !important;
         color: rgb(var(--v-theme-on-primary)) !important;
 
         &::before {
           z-index: -1;
-          color: rgb(var(--v-global-theme-primary));
+          color: rgb(95, 158, 160);
           opacity: 1 !important;
         }
       }

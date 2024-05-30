@@ -3,22 +3,47 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', redirect: '/dashboard' },
+    { path: '/', redirect: '/login' },
+    {
+      path: '/logout',
+      redirect: '/login',
+    },
     {
       path: '/',
       component: () => import('../layouts/default.vue'),
       children: [
         {
-          path: 'dashboard',
+          path: 'dashboard/:role',
+          name: 'dashboard',
           component: () => import('../pages/dashboard.vue'),
         },
         {
-          path: 'account-settings',
-          component: () => import('../pages/account-settings.vue'),
+          path: 'module-form/:moduleId',
+          component: () => import('../pages/modules/form.vue'),
         },
         {
-          path: 'typography',
-          component: () => import('../pages/typography.vue'),
+          path: 'module-form',
+          component: () => import('../pages/modules/form.vue'),
+        },
+        {
+          path: 'modules-list',
+          component: () => import('../pages/modules/list.vue'),
+        },
+        {
+          path: 'modules-view/:stage',
+          component: () => import('../pages/modules/view.vue'),
+        },
+        {
+          path: 'employee-form/:employeeId',
+          component: () => import('../pages/employees/form.vue'),
+        },
+        {
+          path: 'employee-form',
+          component: () => import('../pages/employees/form.vue'),
+        },
+        {
+          path: 'employees-list',
+          component: () => import('../pages/employees/list.vue'),
         },
         {
           path: 'icons',
@@ -33,9 +58,14 @@ const router = createRouter({
           component: () => import('../pages/tables.vue'),
         },
         {
-          path: 'form-layouts',
-          component: () => import('../pages/form-layouts.vue'),
+          path: 'feedback-form',
+          component: () => import('../pages/feedback/form.vue'),
         },
+        {
+          path: 'feedback-list',
+          component: () => import('../pages/feedback/list.vue'),
+        },
+       
       ],
     },
     {

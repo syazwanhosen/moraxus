@@ -14,7 +14,7 @@
 
   background-color: rgba(var(--v-theme-primary), var(--v-activated-opacity));
   box-shadow: none;
-  color: rgb(var(--v-theme-primary));
+  color: rgb(95, 158, 160);
 }
 
 // style for vertical nav nested icon
@@ -26,8 +26,8 @@
 
   // style for nested dot icon
   .nav-item-icon {
-    color: rgb(var(--v-global-theme-primary)) !important;
-    filter: drop-shadow(rgb(var(--v-global-theme-primary)) 0 0 2px);
+    color: rgb(95, 158, 160) !important;
+    filter: drop-shadow(rgb(95, 158, 160) 0 0 2px);
     transform: scale(1.2);
   }
 }

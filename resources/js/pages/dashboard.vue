@@ -1,16 +1,37 @@
 <script setup>
 import AnalyticsCongratulations from '@/views/dashboard/AnalyticsCongratulations.vue'
-import AnalyticsFinanceTabs from '@/views/dashboard/AnalyticsFinanceTab.vue'
-import AnalyticsOrderStatistics from '@/views/dashboard/AnalyticsOrderStatistics.vue'
-import AnalyticsProfitReport from '@/views/dashboard/AnalyticsProfitReport.vue'
-import AnalyticsTotalRevenue from '@/views/dashboard/AnalyticsTotalRevenue.vue'
+import AnalyticsTotalFileDownloaded from '@/views/dashboard/AnalyticsTotalFileDownloaded.vue'
 import AnalyticsTransactions from '@/views/dashboard/AnalyticsTransactions.vue'
+import axios from 'axios'
+import { ref } from 'vue'
 
 // 👉 Images
-import chart from '@images/cards/chart-success.png'
-import card from '@images/cards/credit-card-primary.png'
-import paypal from '@images/cards/paypal-error.png'
-import wallet from '@images/cards/wallet-info.png'
+import documents from '@images/documents.png'
+import employees from '@images/employees.png'
+import feedbacks from '@images/feedbacks.png'
+import videos from '@images/videos.png'
+
+
+const usersCount = ref('')
+const documentsCount = ref('')
+const videoCount = ref('')
+const feedbacksCount = ref('')
+
+const getDashboard = async () => {
+  const user = JSON.parse(localStorage.getItem('user'))
+  try {
+    const response = await axios.get(`/api/get-dashboard/${user.organization_id}`)
+
+    usersCount.value = response.data.users_count
+    documentsCount.value = response.data.documents_count
+    videoCount.value = response.data.videos_count
+    feedbacksCount.value = response.data.feedbacks_count
+  } catch(error) {
+    console.error(error)
+  }
+}
+
+getDashboard()
 </script>
 
 <template>
@@ -35,10 +56,9 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Profit',
-              image: chart,
-              stats: '$12,628',
-              change: 72.80,
+              title: 'Documents',
+              image: documents,
+              stats: documentsCount,
             }"
           />
         </VCol>
@@ -50,10 +70,9 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Sales',
-              image: wallet,
-              stats: '$4,679',
-              change: 28.42,
+              title: 'Videos',
+              image: videos,
+              stats: videoCount,
             }"
           />
         </VCol>
@@ -64,18 +83,16 @@ import wallet from '@images/cards/wallet-info.png'
     <VCol
       cols="12"
       md="8"
-      order="2"
-      order-md="1"
     >
-      <AnalyticsTotalRevenue />
+      <AnalyticsTotalFileDownloaded />
     </VCol>
+  
+   
 
     <VCol
       cols="12"
       sm="8"
       md="4"
-      order="1"
-      order-md="2"
     >
       <VRow>
         <!-- 👉 Payments -->
@@ -85,10 +102,9 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind=" {
-              title: 'Payments',
-              image: paypal,
-              stats: '$2,468',
-              change: -14.82,
+              title: 'Employees',
+              image: employees,
+              stats: usersCount,
             }"
           />
         </VCol>
@@ -100,54 +116,18 @@ import wallet from '@images/cards/wallet-info.png'
         >
           <CardStatisticsVertical
             v-bind="{
-              title: 'Transactions',
-              image: card,
-              stats: '$14,857',
-              change: 28.14,
+              title: 'Feedbacks',
+              image: feedbacks,
+              stats: feedbacksCount,
             }"
           />
         </VCol>
       </VRow>
-
       <VRow>
-        <!-- 👉 Profit Report -->
-        <VCol
-          cols="12"
-          sm="12"
-        >
-          <AnalyticsProfitReport />
+        <VCol cols="12">
+          <AnalyticsTransactions />
         </VCol>
       </VRow>
-    </VCol>
-
-    <!-- 👉 Order Statistics -->
-    <VCol
-      cols="12"
-      md="4"
-      sm="6"
-      order="3"
-    >
-      <AnalyticsOrderStatistics />
-    </VCol>
-
-    <!-- 👉 Tabs chart -->
-    <VCol
-      cols="12"
-      md="4"
-      sm="6"
-      order="3"
-    >
-      <AnalyticsFinanceTabs />
-    </VCol>
-
-    <!-- 👉 Transactions -->
-    <VCol
-      cols="12"
-      md="4"
-      sm="6"
-      order="3"
-    >
-      <AnalyticsTransactions />
     </VCol>
   </VRow>
 </template>

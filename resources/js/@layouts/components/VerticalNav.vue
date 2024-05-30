@@ -1,5 +1,5 @@
 <script setup>
-import logo from '@images/logo.svg?raw'
+import logo from '@images/logo/Logo.png'
 import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
 import { useDisplay } from 'vuetify'
 
@@ -58,14 +58,11 @@ const handleNavScroll = evt => {
           to="/"
           class="app-logo d-flex align-center gap-x-3 app-title-wrapper"
         >
-          <div
-            class="d-flex"
-            v-html="logo"
+          <VImg
+            :src="logo"
+            alt="'img'"
+            width="200"
           />
-
-          <h1 class="leading-normal">
-            Moraxus
-          </h1>
         </RouterLink>
       </slot>
     </div>

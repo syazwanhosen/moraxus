@@ -224,7 +224,7 @@ export const getCandlestickChartConfig = themeColors => {
     },
   }
 }
-export const getRadialBarChartConfig = themeColors => {
+export const getRadialBarChartConfig = () => {
   const radialBarColors = {
     series1: '#fdd835',
     series2: '#32baff',
@@ -233,47 +233,26 @@ export const getRadialBarChartConfig = themeColors => {
     series5: '#FFA1A1',
   }
 
-  const { themeSecondaryTextColor, themePrimaryTextColor } = colorVariables(themeColors)
+  // const { themeSecondaryTextColor, themePrimaryTextColor } = colorVariables(themeColors)
   
   return {
     stroke: { lineCap: 'round' },
-    labels: ['Comments', 'Replies', 'Shares'],
-    legend: {
-      show: true,
-      position: 'bottom',
-      labels: {
-        colors: themeSecondaryTextColor,
-      },
-      markers: {
-        offsetX: -3,
-      },
-      itemMargin: {
-        vertical: 3,
-        horizontal: 10,
-      },
-    },
     colors: [radialBarColors.series1, radialBarColors.series2, radialBarColors.series4],
     plotOptions: {
       radialBar: {
-        hollow: { size: '30%' },
+        size: undefined, // Allows the size to be responsive to the container
         track: {
           margin: 15,
-          background: themeColors.colors['grey-100'],
         },
         dataLabels: {
-          name: {
-            fontSize: '2rem',
-          },
           value: {
-            fontSize: '1rem',
-            color: themeSecondaryTextColor,
+            color: radialBarColors.series2,
           },
           total: {
             show: true,
             fontWeight: 400,
-            label: 'Comments',
-            fontSize: '1.125rem',
-            color: themePrimaryTextColor,
+            label: 'Progress',
+            color: radialBarColors.series3,
             formatter(w) {
               const totalValue = w.globals.seriesTotals.reduce((a, b) => {
                 return a + b
@@ -286,12 +265,6 @@ export const getRadialBarChartConfig = themeColors => {
             },
           },
         },
-      },
-    },
-    grid: {
-      padding: {
-        top: -30,
-        bottom: -25,
       },
     },
   }

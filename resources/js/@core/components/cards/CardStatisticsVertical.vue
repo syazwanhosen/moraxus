@@ -12,13 +12,8 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  change: {
-    type: Number,
-    required: true,
-  },
-})
 
-const isPositive = controlledComputed(() => props.change, () => Math.sign(props.change) === 1)
+})
 </script>
 
 <template>
@@ -29,13 +24,6 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
         :src="props.image"
         alt="image"
       >
-
-      <VSpacer />
-
-      <MoreBtn
-        size="x-small"
-        class="me-n3 mt-n4"
-      />
     </VCardText>
 
     <VCardText>
@@ -45,16 +33,6 @@ const isPositive = controlledComputed(() => props.change, () => Math.sign(props.
       <h5 class="text-h5 text-no-wrap mb-3">
         {{ props.stats }}
       </h5>
-      <span
-        :class="isPositive ? 'text-success' : 'text-error'"
-        class="d-flex align-center gap-1 text-sm"
-      >
-        <VIcon
-          size="18"
-          :icon="isPositive ? 'bx-up-arrow-alt' : 'bx-down-arrow-alt'"
-        />
-        {{ isPositive ? Math.abs(props.change) : props.change }}%
-      </span>
     </VCardText>
   </VCard>
 </template>

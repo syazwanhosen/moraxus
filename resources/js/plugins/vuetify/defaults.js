@@ -2,7 +2,7 @@ export default {
   IconBtn: {
     icon: true,
     size: 'small',
-    color: 'default',
+    color: 'rgb(95, 158, 160)',
     variant: 'text',
     VIcon: {
       size: 24,
@@ -19,12 +19,12 @@ export default {
     variant: 'flat',
   },
   VBadge: {
-    // set v-badge default color to primary
-    color: 'primary',
+    // set v-badge default color to rgb(95, 158, 160)
+    color: 'rgb(95, 158, 160)',
   },
   VBtn: {
-    // set v-btn default color to primary
-    color: 'primary',
+    // set v-btn default color to rgb(95, 158, 160)
+    color: 'rgb(95, 158, 160)',
   },
   VChip: {
     elevation: 0,
@@ -32,15 +32,15 @@ export default {
   },
   VList: {
     VListItem: {
-      color: 'primary',
+      color: 'rgb(95, 158, 160)',
     },
   },
   VPagination: {
     density: 'compact',
   },
   VTabs: {
-    // set v-tabs default color to primary
-    color: 'primary',
+    // set v-tabs default color to rgb(95, 158, 160)
+    color: 'rgb(95, 158, 160)',
     VSlideGroup: {
       showArrows: true,
     },
@@ -50,16 +50,16 @@ export default {
     location: 'top',
   },
   VCheckboxBtn: {
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
   },
   VCheckbox: {
-    // set v-checkbox default color to primary
-    color: 'primary',
+    // set v-checkbox default color to rgb(95, 158, 160)
+    color: 'rgb(95, 158, 160)',
     density: 'comfortable',
     hideDetails: 'auto',
   },
   VRadioGroup: {
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     density: 'comfortable',
     hideDetails: 'auto',
   },
@@ -69,40 +69,40 @@ export default {
   },
   VSelect: {
     variant: 'outlined',
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
   },
   VRangeSlider: {
-    // set v-range-slider default color to primary
+    // set v-range-slider default color to rgb(95, 158, 160)
     thumbSize: 14,
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     density: 'comfortable',
     thumbLabel: true,
     hideDetails: 'auto',
   },
   VRating: {
-    // set v-rating default color to primary
+    // set v-rating default color to rgb(95, 158, 160)
     color: 'rgba(var(--v-theme-on-background),0.22)',
     activeColor: 'warning',
   },
   VProgressCircular: {
-    // set v-progress-circular default color to primary
-    color: 'primary',
+    // set v-progress-circular default color to rgb(95, 158, 160)
+    color: 'rgb(95, 158, 160)',
   },
   VSlider: {
-    // set v-slider default color to primary
+    // set v-slider default color to rgb(95, 158, 160)
     thumbSize: 14,
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
   },
   VTextField: {
     variant: 'outlined',
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
   },
   VAutocomplete: {
     variant: 'outlined',
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
     VChip: {
       density: 'default',
@@ -110,23 +110,23 @@ export default {
   },
   VCombobox: {
     variant: 'outlined',
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
   },
   VFileInput: {
     variant: 'outlined',
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
   },
   VTextarea: {
     variant: 'outlined',
     density: 'comfortable',
-    color: 'primary',
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
   },
   VSwitch: {
-    // set v-switch default color to primary
-    color: 'primary',
+    // set v-switch default color to rgb(95, 158, 160)
+    color: 'rgb(95, 158, 160)',
     hideDetails: 'auto',
   },
 }

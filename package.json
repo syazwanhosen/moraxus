@@ -1,5 +1,5 @@
 {
-  "name": "sneat-vuetify-vuejs-laravel-admin-template",
+  "name": "employee-training",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "axios": "1.4.0",
     "axios-mock-adapter": "^1.21.4",
     "chart.js": "^4.1.2",
+    "dayjs": "^1.11.11",
     "eslint-import-resolver-alias": "^1.1.2",
     "jwt-decode": "^3.1.2",
     "pinia": "^2.1.3",
